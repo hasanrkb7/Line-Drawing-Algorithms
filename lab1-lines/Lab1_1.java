@@ -1,0 +1,71 @@
+import com.jogamp.opengl.GL2;
+
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.GLProfile;
+import com.jogamp.opengl.awt.GLCanvas;
+import javax.swing.JFrame;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner;
+
+public class Lab1_1 implements GLEventListener{
+	
+	static GLProfile profile = GLProfile.get(GLProfile.GL2);
+    static GLCapabilities capabilities = new GLCapabilities(profile);
+    // The canvas 
+    static GLCanvas glcanvas = new GLCanvas(capabilities);
+    
+   public static void main(String[] args) {
+	      //getting the capabilities object of GL2 profile
+	   	  
+	      
+	      Line l = new Line();
+	      //creating frame
+	      glcanvas.addGLEventListener(l);
+	      glcanvas.setSize(600, 400);
+	      
+	      final JFrame frame = new JFrame ("straight Line");
+	      //adding canvas to frame
+	      frame.getContentPane().add(glcanvas);
+	      frame.setSize(frame.getContentPane().getPreferredSize());
+	      frame.setVisible(true);
+	      
+	   }
+   public void display(GLAutoDrawable drawable) {
+     
+	       final GL2 gl = drawable.getGL().getGL2();
+           gl.glBegin (GL2.GL_POINTS);
+       	   int max=0;
+       	   int min=-1; 
+       	  for(int i=0;i<100;i++) {
+       		double random_double_1 = Math.random() * (max - min + 1) + min;
+       		double random_double_2 = Math.random() * (max - min + 1) + min;
+       		
+       		gl.glVertex2d(random_double_1,random_double_2);
+       	  }
+	       gl.glEnd();
+         
+       	
+       	  
+           
+          
+      
+   }
+   
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+
+   
+   public void init(GLAutoDrawable drawable) {
+      // method body
+	   //4. drive the display() in a loop
+	    }
+   
+   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+      // method body
+   }
+   //end of main
+}//end of classimport javax.media.opengl.GL2;
